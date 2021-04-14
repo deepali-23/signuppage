@@ -60,8 +60,8 @@ const Button = styled.button`
 `;
 const Maindiv = styled.div``;
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       fullName: "",
       email: "",
@@ -101,14 +101,13 @@ class App extends Component {
       conform_password: event.target.value,
     });
   }
+
   ////onsubmit
-  onSubmit(event) {
-    // try {
-    //   console.log("data is fetch");
-    event.preventDefault(); //this makes tha form to came to its intial state..refreshes.
+  onSubmit() {
+    // event.preventDefault(); //this makes tha form to came to its intial state..refreshes.
 
     const registered = {
-      // fullname: "a",
+      // fullName: "a",
       // email: "a",
       // mobile: "1",
       // password: "1 ",
@@ -119,21 +118,23 @@ class App extends Component {
       password: this.state.password,
       conform_password: this.state.conform_password,
     };
+    // console.log("helllloooo", this.state.fullName);
+    // console.log(email);
+    // console.log(mobile);
+    // console.log(password);
+    // console.log(conform_password);
     // console.log("print mee");
     axios
       .post("http://localhost:4000/app/signup", registered)
       .then((response) => console.log(response.data));
-    // console.log("print hjkhjkhkjhjkhj");
-    this.setState({
-      fullName: "",
-      email: "",
-      mobile: "",
-      password: "",
-      conform_password: "",
-    });
-    // } catch {
-    //   console.log("Error");
-    // }
+
+    //   this.setState({
+    //     fullName: "",
+    //     email: "",
+    //     mobile: "",
+    //     password: "",
+    //     conform_password: "",
+    //   });
   }
 
   render() {
@@ -143,12 +144,12 @@ class App extends Component {
           <Heading>LOGIN PAGE</Heading>
         </Headdiv>
         <I src="./login.png"></I>
-        <form onSubmit={this.onSubmit}>
+        <div>
           <Fullname className="Full_Name">
             <Input1
               type="text"
               placeholder="Enter your FullName"
-              onchange={this.changeFullName}
+              onChange={this.changeFullName}
               //value={this.state.fullName}
             />
             <br />
@@ -157,7 +158,7 @@ class App extends Component {
             <Input2
               type="text"
               placeholder="Enter your E-mail"
-              onchange={this.changeEmail}
+              onChange={this.changeEmail}
               // value={this.state.email}
             />
             <br />
@@ -166,7 +167,7 @@ class App extends Component {
             <Input3
               type="text"
               placeholder="Enter your ph-no."
-              onchange={this.changeMobile}
+              onChange={this.changeMobile}
               // value={this.state.mobile}
             />
             <br />
@@ -175,7 +176,7 @@ class App extends Component {
             <Input4
               type="password"
               placeholder="Enter your password"
-              onchange={this.changepassword} //can be named as ur function name..
+              onChange={this.changepassword} //can be named as ur function name..
               // value={this.state.password}
             />
             <br />
@@ -184,13 +185,17 @@ class App extends Component {
             <Input5
               type="password"
               placeholder="Enter Confirm-password"
-              onchange={this.changeconformpassword}
+              onChange={this.changeconformpassword}
               // value={this.state.conform_password}
             />
             <br />
           </Confirmpassword>
-          <input type="Submit" value="Submit" />
-        </form>
+          <Button
+            onClick={() => this.onSubmit()}
+            type="Submit"
+            value="Submit"
+          />
+        </div>
       </div>
     );
   }

@@ -12,7 +12,7 @@ const signUpTemplate = new mongoose.Schema({
   },
 
   mobile: {
-    type: Number,
+    type: String,
     required: true,
   },
   password: {
