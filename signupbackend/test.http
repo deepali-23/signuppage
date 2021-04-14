@@ -1,0 +1,12 @@
+
+POST http://localhost:4000/app/signup
+Content-Type: application/json
+
+{
+    "fullName":"abd",
+    "email":"abc@gmail.com",
+    "mobile":"5678909654",
+    "password":"123",
+    "conform_password":"123"
+
+}
